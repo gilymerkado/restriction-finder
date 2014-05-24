@@ -51,6 +51,7 @@ def get_groups_names(filename):
 		group_name = group[0]
 		groups.append(group_name)
 	return groups
+			
 
 class Group:
 	'''A group of specimens with common and specific restriction enzymes.
@@ -60,13 +61,13 @@ class Group:
 		self.filename = 'filename' # The definitions file (csv)
 	
 	def read_txt_file(self, filename):
-	'''reads a txt file and returns it as a list of rows'''
-	rows = []
-	f = open(filename, 'r')
-	for row in f:
-		rows.append(row)
-	f.close()
-	return rows
+		'''reads a txt file and returns it as a list of rows'''
+		rows = []
+		f = open(filename, 'r')
+		for row in f:
+			rows.append(row)
+		f.close()
+		return rows
 	
 	def get_specimens(self, filename):
 		'''get the list of specimens in the group.
@@ -127,7 +128,19 @@ class Group:
 					common_enzymes.add(enzyme_list)
 		return common_enzymes
 		
-
+	def get_specific_enzymes(listOfCommonEnzymes, listOfCommonFromOtherGroup):
+		'''return a list of the specific enzymes when compared with 
+		another group.
+		input - A list of the common enzymes of the group.
+		A list of the common enzymes of the group to be compared with.
+		'''
+		specific_enzymes = []
+		for enzyme in listOfCommonEnzymes:
+			if enzyme not in listOfCommonFromOtherGroup:
+				specific_enzymes.append(enzyme)
+		return specific_enzymes
+		
+		
 def main():
 	
 	return 0
